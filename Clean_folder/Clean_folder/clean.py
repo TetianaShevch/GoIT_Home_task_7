@@ -3,65 +3,6 @@ from pathlib import Path
 import shutil
 import re
 
-# python clean.py <Name of folder> 
-
-images = []
-documents = []
-audio = []
-video = []
-archives = []
-unknown = []
-my_others = []
-REGISTER_EXTENSION = {
-    'JPEG': images,
-    'JPG': images,
-    'PNG': images,
-    'SVG': images,
-    'AVI': video, 
-    'MP4': video, 
-    'MOV': video, 
-    'MKV': video,
-    'DOC': documents, 
-    'DOCX': documents,
-    'TXT': documents, 
-    'PDF': documents, 
-    'XLSX': documents, 
-    'PPTX': documents,
-    'MP3': audio,
-    'OGG': audio, 
-    'WAV': audio, 
-    'AMR': audio,
-    'M4A': audio,
-    'ZIP': archives,
-    'GZ': archives, 
-    'TAR': archives
-}
-
-DYRECTORY_NAME = {
-    'JPEG': "Images",
-    'JPG': "Images",
-    'PNG': "Images",
-    'SVG': "Images",
-    'AVI': "Video", 
-    'MP4': "Video", 
-    'MOV': "Video", 
-    'MKV': "Video",
-    'DOC': "Documents", 
-    'DOCX': "Documents",
-    'TXT': "Documents", 
-    'PDF': "Documents", 
-    'XLSX': "Documents", 
-    'PPTX': "Documents",
-    'MP3': "Audio",
-    'OGG': "Audio", 
-    'WAV': "Audio", 
-    'AMR': "Audio",
-    'M4A': "Audio",
-    'ZIP': "Archives",
-    'GZ': "Archives", 
-    'TAR': "Archives"
-}
-EXTENSION = set()
 
 def read_folder(path: Path, folder_to_scan: Path) -> None:
     """
@@ -179,23 +120,86 @@ def rename_files_and_folders(path: Path) -> None:
         else:
             el.replace(path / normalize(el.name))
 
-def clean_folder():                    
-    if __name__ == "__main__":
-        
-        folder_to_scan = sys.argv[1]
-        
-        read_folder(Path(folder_to_scan), Path(folder_to_scan)) # Обробляємо папку
+def clean_folder():
+        """
+        Функція виконує сортування папки, заданої при виклику 'python clean.py <Name of folder>'
+        """                    
+            
+images = []
+documents = []
+audio = []
+video = []
+archives = []
+unknown = []
+my_others = []
+REGISTER_EXTENSION = {
+    'JPEG': images,
+    'JPG': images,
+    'PNG': images,
+    'SVG': images,
+    'AVI': video, 
+    'MP4': video, 
+    'MOV': video, 
+    'MKV': video,
+    'DOC': documents, 
+    'DOCX': documents,
+    'TXT': documents, 
+    'PDF': documents, 
+    'XLSX': documents, 
+    'PPTX': documents,
+    'MP3': audio,
+    'OGG': audio, 
+    'WAV': audio, 
+    'AMR': audio,
+    'M4A': audio,
+    'ZIP': archives,
+    'GZ': archives, 
+    'TAR': archives
+}
 
-        handle_empty_folders(Path(folder_to_scan)) # після сортування файлів у папці видаляємо пусті папки, що утворилися після упорядкування, і нормалізуємо назви файлів
+DYRECTORY_NAME = {
+    'JPEG': "Images",
+    'JPG': "Images",
+    'PNG': "Images",
+    'SVG': "Images",
+    'AVI': "Video", 
+    'MP4': "Video", 
+    'MOV': "Video", 
+    'MKV': "Video",
+    'DOC': "Documents", 
+    'DOCX': "Documents",
+    'TXT': "Documents", 
+    'PDF': "Documents", 
+    'XLSX': "Documents", 
+    'PPTX': "Documents",
+    'MP3': "Audio",
+    'OGG': "Audio", 
+    'WAV': "Audio", 
+    'AMR': "Audio",
+    'M4A': "Audio",
+    'ZIP': "Archives",
+    'GZ': "Archives", 
+    'TAR': "Archives"
+}
+EXTENSION = set()
 
-        # Друкуємо список файлів у категорії (музика, відео, фото та ін.)
-        print(f'Images: {images}') 
-        print(f'Video: {video}')
-        print(f'Documents: {documents}')
-        print(f'Audio: {audio}')
-        print(f'Archives: {archives}')
-        print(f'Other files: {my_others}')
-        # Друкуєхмо перелік всіх відомих скриптів розширень, які зустрічаються в цільовій папці.
-        print(f'Types of files in folder: {EXTENSION}')
-        # Друкуємо перелік усіх розширень, які скрипту невідомі.
-        print(f'Files of Unknown types: {unknown}')
+folder_to_scan = sys.argv[1]
+        
+read_folder(Path(folder_to_scan), Path(folder_to_scan)) # Обробляємо папку
+
+handle_empty_folders(Path(folder_to_scan)) # після сортування файлів у папці видаляємо пусті папки, що утворилися після упорядкування, і нормалізуємо назви файлів
+
+# Друкуємо список файлів у категорії (музика, відео, фото та ін.)
+print(f'Images: {images}') 
+print(f'Video: {video}')
+print(f'Documents: {documents}')
+print(f'Audio: {audio}')
+print(f'Archives: {archives}')
+print(f'Other files: {my_others}')
+# Друкуєхмо перелік всіх відомих скриптів розширень, які зустрічаються в цільовій папці.
+print(f'Types of files in folder: {EXTENSION}')
+# Друкуємо перелік усіх розширень, які скрипту невідомі.
+print(f'Files of Unknown types: {unknown}')
+
+if __name__ == "__main__":
+    clean_folder()
