@@ -1,7 +1,7 @@
 from setuptools import setup, find_namespace_packages
 
 setup(
-    name='Clean_folder',
+    name='Clean_folder_STM',
     version='0.0.1',
     description='Sorting of folder',
     url='https://github.com/TetianaShevch/GoIT_Home_task_7.git',
@@ -9,5 +9,5 @@ setup(
     author_email='Shevch_Tatyana@gmail.com',
     license='MIT',
     packages=find_namespace_packages(),
-    entry_points={'console_scripts': ['clean_folder=clean_folder.clean:start']}
+    entry_points={'console_scripts': ['clean_folder=clean_folder_STM.clean:clean_folder']}
     )

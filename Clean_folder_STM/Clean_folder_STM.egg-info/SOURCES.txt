@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+Clean_folder_STM/__init__.py
+Clean_folder_STM/clean.py
+Clean_folder_STM.egg-info/PKG-INFO
+Clean_folder_STM.egg-info/SOURCES.txt
+Clean_folder_STM.egg-info/dependency_links.txt
+Clean_folder_STM.egg-info/entry_points.txt
+Clean_folder_STM.egg-info/top_level.txt
